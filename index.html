@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazmorra Hexagonal · Reglamento</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0d0d;
+            --surface: #1a1a1a;
+            --surface2: #222;
+            --gold: #c9a227;
+            --gold-dark: #a07e1a;
+            --red: #8b1e1e;
+            --text: #e0d7c6;
+            --text-light: #f0e9d8;
+            --border: #3a2e1a;
+            --shadow: 0 4px 12px rgba(0,0,0,0.7);
+            --radius: 10px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            background-image: radial-gradient(circle at 20% 30%, #1e1a12 0%, #0d0d0d 90%);
+            color: var(--text);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--gold-dark);
+            padding-bottom: 1.5rem;
+        }
+
+        header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+            text-shadow: 0 0 10px rgba(201,162,39,0.4);
+            margin-bottom: 0.25rem;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: var(--red);
+            color: #fff;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        nav {
+            margin: 2rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--gold);
+            text-decoration: none;
+            background: var(--surface);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            background: var(--gold-dark);
+            color: #000;
+            border-color: var(--gold);
+        }
+
+        section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            border-left: 6px solid var(--gold-dark);
+            padding-left: 0.8rem;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            color: #e6c65c;
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.6rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: var(--surface2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: var(--gold-dark);
+            color: #000;
+            font-weight: bold;
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid #333;
+            color: var(--text-light);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .card {
+            background: #1f1a12;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .card h4 {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .note {
+            background: #1e1a10;
+            border-left: 4px solid var(--gold);
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #d4c9a8;
+        }
+
+        .rule {
+            background: #221d12;
+            border: 1px dashed var(--gold-dark);
+            border-radius: 6px;
+            padding: 0.8rem;
+            margin: 0.8rem 0;
+        }
+
+        .highlight {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .ability {
+            background: #1a1610;
+            padding: 0.6rem;
+            border-radius: 5px;
+            margin-bottom: 0.3rem;
+        }
+
+        .ability-name {
+            color: #f0c040;
+            font-weight: bold;
+        }
+
+        .toc {
+            column-count: 2;
+            column-gap: 2rem;
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 0.4rem;
+        }
+
+        .toc a {
+            color: var(--text);
+            text-decoration: none;
+        }
+        .toc a:hover { color: var(--gold); }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            .toc { column-count: 1; }
+            nav ul { flex-direction: column; align-items: center; }
+            section { padding: 1rem; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚔️ Mazmorra Hexagonal</h1>
+            <div class="subtitle">Reglamento de juego</div>
+            <span class="version-badge">Versión 0.9</span>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#objetivo">Objetivo</a></li>
+                <li><a href="#componentes">Componentes</a></li>
+                <li><a href="#tablero">Tablero</a></li>
+                <li><a href="#exploracion">Exploración</a></li>
+                <li><a href="#personajes">Personajes</a></li>
+                <li><a href="#turno">Turno</a></li>
+                <li><a href="#combate">Combate</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#objetos">Objetos</a></li>
+                <li><a href="#enemigos">Enemigos</a></li>
+                <li><a href="#recompensas">Recompensas</a></li>
+                <li><a href="#fin">Fin</a></li>
+            </ul>
+        </nav>
+
+        <!-- Objetivo -->
+        <section id="objetivo">
+            <h2>🎯 Objetivo</h2>
+            <p>Ser el <span class="highlight">último jugador con vida</span> en un tablero hexagonal lleno de losetas ocultas, enemigos y objetos.</p>
+        </section>
+
+        <!-- Componentes -->
+        <section id="componentes">
+            <h2>🧱 Componentes</h2>
+            <ul>
+                <li>Losetas hexagonales</li>
+                <li>1 dado de seis caras (1D6)</li>
+                <li>Miniaturas o fichas de personaje</li>
+                <li>Mazo de 10 objetos</li>
+                <li>Fichas de enemigos</li>
+                <li>Marcadores de vida</li>
+            </ul>
+        </section>
+
+        <!-- Tablero -->
+        <section id="tablero">
+            <h2>🗺️ Preparación del tablero</h2>
+            <h3>Montaje</h3>
+            <p>Se colocan las losetas <span class="highlight">boca abajo</span> formando un mapa hexagonal.</p>
+            <table>
+                <tr><th>Jugadores</th><th>Losetas totales</th></tr>
+                <tr><td>2-3</td><td>7</td></tr>
+                <tr><td>4</td><td>13</td></tr>
+                <tr><td>5-6</td><td>19</td></tr>
+            </table>
+
+            <h3>Tipos de loseta</h3>
+            <table>
+                <tr><th>Tipo</th><th>Efecto</th></tr>
+                <tr><td><span class="highlight">Normal</span></td><td>Sin efecto.</td></tr>
+                <tr><td><span class="highlight">Terreno difícil</span></td><td>Entrar cuesta 1 acción. <span class="highlight">Salir</span> cuesta 2 acciones de movimiento.</td></tr>
+                <tr><td><span class="highlight">Muro</span></td><td>No se puede entrar. Bloquea línea de visión y ataques.</td></tr>
+                <tr><td><span class="highlight">Botín</span></td><td>Al terminar tu turno encima, robas 1 objeto aleatorio. Después se convierte en Normal.</td></tr>
+                <tr><td><span class="highlight">Guarida</span></td><td>Genera enemigos al final de cada ronda según tirada.</td></tr>
+            </table>
+
+            <h3>Distribución de losetas</h3>
+            <table>
+                <tr><th>Tipo</th><th>7 losetas (2-3)</th><th>13 losetas (4)</th><th>19 losetas (5-6)</th></tr>
+                <tr><td>Normal</td><td>3</td><td>4</td><td>7</td></tr>
+                <tr><td>Terreno difícil</td><td>1</td><td>2</td><td>4</td></tr>
+                <tr><td>Muro</td><td>0</td><td>2</td><td>4</td></tr>
+                <tr><td>Botín</td><td>2</td><td>2</td><td>2</td></tr>
+                <tr><td>Guarida</td><td>1</td><td>1</td><td>2</td></tr>
+            </table>
+
+            <h3>Reglas de montaje seguro</h3>
+            <ul>
+                <li>Las losetas de <span class="highlight">esquina</span> usadas como inicio <span class="highlight">no pueden ser Muro ni Terreno difícil</span>.</li>
+                <li>En mapas de 13 y 19 losetas, el <span class="highlight">primer anillo</span> alrededor del centro no puede contener Muros.</li>
+                <li>Las losetas de inicio se revelan automáticamente al empezar.</li>
+            </ul>
+
+            <h3>Posición inicial</h3>
+            <p>Cada jugador empieza en una <span class="highlight">loseta de esquina</span> del tablero. Esas losetas están reveladas desde el inicio.</p>
+        </section>
+
+        <!-- Exploración -->
+        <section id="exploracion">
+            <h2>🔍 Exploración y movimiento</h2>
+            <h3>Mover</h3>
+            <ul>
+                <li><span class="highlight">Mover</span> cuesta <span class="highlight">1 acción</span>.</li>
+                <li>Permite moverte <span class="highlight">1 loseta normal</span>.</li>
+                <li><span class="highlight">Entrar en terreno difícil</span> cuesta 1 acción.</li>
+                <li><span class="highlight">Salir de terreno difícil</span> cuesta 2 acciones de movimiento.</li>
+            </ul>
+            <h3>Revelar losetas</h3>
+            <ul>
+                <li>Puedes gastar <span class="highlight">1 acción</span> para revelar una loseta adyacente sin moverte.</li>
+                <li>Al moverte a una loseta boca abajo, la revelas automáticamente al entrar.</li>
+            </ul>
+            <h3>Efectos al revelar al moverse</h3>
+            <table>
+                <tr><th>Loseta revelada</th><th>Efecto</th></tr>
+                <tr><td>Normal</td><td>Entras con normalidad.</td></tr>
+                <tr><td>Terreno difícil</td><td>Entras con normalidad. Para salir después necesitarás 2 acciones.</td></tr>
+                <tr><td>Muro</td><td>No puedes entrar. Puedes detenerte justo antes sin gastar acción extra.</td></tr>
+                <tr><td>Botín</td><td>Entras. Si terminas tu turno ahí, robas objeto.</td></tr>
+                <tr><td>Guarida</td><td>Entras. A partir de ahora puede generar enemigos.</td></tr>
+            </table>
+        </section>
+
+        <!-- Personajes -->
+        <section id="personajes">
+            <h2>👥 Personajes</h2>
+            <p>Todos los personajes tienen <span class="highlight">5 vidas</span>.</p>
+            <table>
+                <tr><th>Personaje</th><th>Ataque</th><th>Defensa</th><th>Alcance</th><th>Habilidades</th></tr>
+                <tr><td>⚔️ Vanguardia</td><td>+1</td><td>+1</td><td>1</td><td>Carga, Golpe de escudo, Grito de guerra</td></tr>
+                <tr><td>🏹 Cazador</td><td>+1</td><td>+0</td><td>2</td><td>Marcar, Disparo rápido, Trampa de caza</td></tr>
+                <tr><td>🔨 Bruto</td><td>+2</td><td>+0</td><td>1</td><td>Golpe brutal, Aplastar, Embate</td></tr>
+                <tr><td>🦊 Explorador</td><td>+1</td><td>+0</td><td>1</td><td>Desplazamiento, Paso ligero, Correr</td></tr>
+                <tr><td>🛡️ Guardián</td><td>+0</td><td>+2</td><td>1</td><td>Escudo, Defensa total, Provocación</td></tr>
+                <tr><td>🗡️ Asesino</td><td>+1</td><td>+0</td><td>1</td><td>Puñalada trapera, Golpe bajo, Asesinato</td></tr>
+            </table>
+        </section>
+
+        <!-- Turno -->
+        <section id="turno">
+            <h2>⚙️ Turno</h2>
+            <p>Cada personaje tiene <span class="highlight">3 acciones</span> por turno.</p>
+            <ul>
+                <li><span class="highlight">Mover</span> → 1 acción → 1 loseta normal.</li>
+                <li><span class="highlight">Atacar</span> → 1 acción.</li>
+                <li><span class="highlight">Usar habilidad especial</span> → 1 acción → máximo 1 por turno.</li>
+                <li><span class="highlight">Usar objeto</span> → 1 acción → máximo 1 por turno.</li>
+                <li><span class="highlight">Descansar</span> → gasta todas las acciones → recupera 1 vida.</li>
+            </ul>
+            <div class="note">En un turno puedes usar <span class="highlight">o una habilidad especial o un objeto</span>, no ambos. Puedes repetir Mover y Atacar libremente.</div>
+        </section>
+
+        <!-- Descanso -->
+        <section id="descanso">
+            <h2>🛌 Descansar</h2>
+            <p>Gastas <span class="highlight">todas tus acciones</span> del turno. No te mueves, no atacas, no usas habilidad ni objeto. Al final del turno recuperas <span class="highlight">1 punto de vida</span>. No puedes superar tu vida máxima de 5.</p>
+        </section>
+
+        <!-- Combate -->
+        <section id="combate">
+            <h2>⚔️ Combate</h2>
+            <ul>
+                <li>Ataque cuerpo a cuerpo: enemigo adyacente.</li>
+                <li>Cazador: alcance 2.</li>
+                <li>El atacante tira <span class="highlight">1D6 + modificador de ataque</span>.</li>
+                <li>El defensor tira <span class="highlight">1D6 + modificador de defensa</span>.</li>
+            </ul>
+            <table>
+                <tr><th>Comparación</th><th>Resultado</th></tr>
+                <tr><td>Ataque &gt; Defensa</td><td>Impacta. Hace 1 de daño.</td></tr>
+                <tr><td>Ataque = Defensa</td><td>Falla.</td></tr>
+                <tr><td>Ataque &lt; Defensa</td><td>Falla.</td></tr>
+            </table>
+            <p><span class="highlight">Muros bloquean línea de visión y ataques</span>, incluso entre losetas adyacentes. Personaje con 0 vidas queda eliminado.</p>
+        </section>
+
+        <!-- Habilidades -->
+        <section id="habilidades">
+            <h2>✨ Habilidades especiales</h2>
+            <p>Cada personaje tiene <span class="highlight">3 habilidades especiales</span>. Usar una habilidad consume <span class="highlight">1 acción</span>. Solo puedes usar <span class="highlight">1 habilidad especial por turno</span>.</p>
+
+            <h3>⚔️ Vanguardia</h3>
+            <div class="ability"><span class="ability-name">Carga:</span> Mueve 1 loseta adicional (total 2). Tu siguiente ataque este turno gana +1.</div>
+            <div class="ability"><span class="ability-name">Golpe de escudo:</span> Ataque cuerpo a cuerpo. Si impacta, el objetivo no puede atacarte en su próximo turno.</div>
+            <div class="ability"><span class="ability-name">Grito de guerra:</span> Ganas +1 al ataque hasta el final de tu próximo turno.</div>
+
+            <h3>🏹 Cazador</h3>
+            <div class="ability"><span class="ability-name">Marcar:</span> Marca a un enemigo a 2 o menos. Tu siguiente ataque contra él este turno gana +1.</div>
+            <div class="ability"><span class="ability-name">Disparo rápido:</span> Ataque a distancia con -1 al ataque. Si impacta, puedes hacer otro ataque a distancia inmediatamente.</div>
+            <div class="ability"><span class="ability-name">Trampa de caza:</span> Coloca una trampa invisible en una loseta adyacente revelada. El primer personaje que entre sufre 1 daño y pierde su siguiente acción de movimiento.</div>
+
+            <h3>🔨 Bruto</h3>
+            <div class="ability"><span class="ability-name">Golpe brutal:</span> Ataque cuerpo a cuerpo. Si impacta, inflige +1 daño adicional.</div>
+            <div class="ability"><span class="ability-name">Aplastar:</span> Ataque cuerpo a cuerpo con +1 al ataque. Si impacta, +1 daño adicional. No puedes usarlo si te has movido este turno.</div>
+            <div class="ability"><span class="ability-name">Embate:</span> Mueve 1 loseta en línea recta hacia un enemigo y realiza un ataque cuerpo a cuerpo con +1 al ataque.</div>
+
+            <h3>🦊 Explorador</h3>
+            <div class="ability"><span class="ability-name">Desplazamiento:</span> Mueve 2 losetas adicionales (total 3). Ignora el coste extra de salir de terreno difícil durante ese movimiento.</div>
+            <div class="ability"><span class="ability-name">Paso ligero:</span> Ignora el coste extra de terreno difícil este turno. Gana +1 defensa y +1 ataque hasta tu próximo turno.</div>
+            <div class="ability"><span class="ability-name">Correr:</span> Mueve 2 losetas adicionales (total 3). No puedes ser objetivo de habilidades enemigas hasta tu próximo turno.</div>
+
+            <h3>🛡️ Guardián</h3>
+            <div class="ability"><span class="ability-name">Escudo:</span> Hasta tu próximo turno, ganas +2 defensa contra el próximo ataque que recibas.</div>
+            <div class="ability"><span class="ability-name">Defensa total:</span> Ganas +3 defensa hasta tu próximo turno, pero no puedes atacar este turno ni el siguiente.</div>
+            <div class="ability"><span class="ability-name">Provocación:</span> Elige un enemigo adyacente. Ese enemigo debe atacarte a ti en su próximo turno si puede.</div>
+
+            <h3>🗡️ Asesino</h3>
+            <div class="ability"><span class="ability-name">Puñalada trapera:</span> Ataque cuerpo a cuerpo. Si el objetivo está herido, ganas +1 al ataque y, si impacta, +1 daño adicional.</div>
+            <div class="ability"><span class="ability-name">Golpe bajo:</span> Ataque cuerpo a cuerpo. Si impacta, el objetivo pierde 1 acción en su próximo turno.</div>
+            <div class="ability"><span class="ability-name">Asesinato:</span> Ataque cuerpo a cuerpo con +2 al ataque. Si fallas, pierdes 1 vida.</div>
+        </section>
+
+        <!-- Objetos -->
+        <section id="objetos">
+            <h2>🎒 Objetos</h2>
+            <h3>Conseguir objetos</h3>
+            <p>Al <span class="highlight">terminar tu turno sobre una loseta de Botín</span>, robas 1 objeto aleatorio del mazo. La loseta se convierte en <span class="highlight">Normal</span>. Sin límite de objetos en la mano.</p>
+            <h3>Usar objetos</h3>
+            <p>Usar un objeto consume <span class="highlight">1 acción</span>. Solo puedes usar <span class="highlight">1 objeto por turno</span>. Si usas un objeto, <span class="highlight">no puedes usar tu habilidad especial</span> ese turno. Los objetos son de un solo uso.</p>
+            <table>
+                <tr><th>#</th><th>Objeto</th><th>Efecto</th></tr>
+                <tr><td>1</td><td>Vendaje</td><td>Recupera 1 vida.</td></tr>
+                <tr><td>2</td><td>Botiquín</td><td>Recupera 2 vidas.</td></tr>
+                <tr><td>3</td><td>Poción de furia</td><td>Tu siguiente ataque este turno hace +1 daño adicional.</td></tr>
+                <tr><td>4</td><td>Poción de resistencia</td><td>Ganas +2 defensa hasta tu próximo turno.</td></tr>
+                <tr><td>5</td><td>Poción de velocidad</td><td>Ganas 1 acción adicional este turno. No puedes usarla para objetos o habilidades.</td></tr>
+                <tr><td>6</td><td>Granada</td><td>Elige a un enemigo a 2 losetas o menos. Sufre 1 daño automático.</td></tr>
+                <tr><td>7</td><td>Dardo envenenado</td><td>Ataque a distancia hasta 2 losetas con +1 al ataque.</td></tr>
+                <tr><td>8</td><td>Escudo temporal</td><td>Ganas +1 defensa hasta tu próximo turno.</td></tr>
+                <tr><td>9</td><td>Amuleto regenerador</td><td>Al inicio de tu próximo turno, recuperas 1 vida.</td></tr>
+                <tr><td>10</td><td>Poción de invisibilidad</td><td>No puedes ser atacado hasta el inicio de tu próximo turno.</td></tr>
+            </table>
+        </section>
+
+        <!-- Enemigos -->
+        <section id="enemigos">
+            <h2>👹 Enemigos</h2>
+            <h3>Aparición al desvelar loseta</h3>
+            <p>Cuando revelas una loseta <span class="highlight">Normal</span>, tira <span class="highlight">1D6</span>.</p>
+            <table>
+                <tr><th>Resultado</th><th>Efecto</th></tr>
+                <tr><td>1-2</td><td>Aparece un <span class="highlight">Horror menor</span> en la loseta revelada.</td></tr>
+                <tr><td>3-6</td><td>No aparece enemigo.</td></tr>
+            </table>
+            <p>No se tira dado al revelar <span class="highlight">Muro, Terreno difícil, Botín o Guarida</span>.</p>
+
+            <h3>Aparición al final de cada ronda</h3>
+            <ul>
+                <li>Por cada <span class="highlight">Guarida revelada</span>, tira 1D6. Con <span class="highlight">6</span>, aparece un Horror menor en esa Guarida.</li>
+                <li>Si hay <span class="highlight">menos de 3 enemigos</span> en juego, tira 1D6. Con <span class="highlight">5-6</span>, aparece un Horror menor en una loseta de borde aleatoria no ocupada.</li>
+            </ul>
+            <p><span class="highlight">Límite de enemigos:</span> 4.</p>
+
+            <h3>Tipos de enemigos</h3>
+            <table>
+                <tr><th>Enemigo</th><th>Vida</th><th>Ataque</th><th>Defensa</th><th>Daño</th><th>Movimiento</th><th>Recompensa</th></tr>
+                <tr><td>Horror menor</td><td>2</td><td>+0</td><td>+0</td><td>1</td><td>1 loseta</td><td>Roba 1 objeto</td></tr>
+                <tr><td>Horror medio</td><td>3</td><td>+1</td><td>+0</td><td>1</td><td>1 loseta</td><td>Roba 1 objeto + 1 vida</td></tr>
+                <tr><td>Horror grande</td><td>4</td><td>+1</td><td>+1</td><td>2</td><td>1 loseta</td><td>Roba 2 objetos</td></tr>
+            </table>
+            <p>Para esta versión se usa principalmente el <span class="highlight">Horror menor</span>. Los Horrores medio y grande pueden introducirse en reglas avanzadas.</p>
+
+            <h3>Activación de enemigos</h3>
+            <p>Al final de cada ronda, todos los enemigos en juego actúan:</p>
+            <ul>
+                <li><span class="highlight">Movimiento:</span> Se mueven 1 loseta hacia el jugador más cercano. No atraviesan muros. Ignoran el coste extra de terreno difícil.</li>
+                <li><span class="highlight">Ataque:</span> Si están adyacentes a un jugador, atacan. Tiran 1D6 + su ataque contra 1D6 + defensa del jugador. Si impacta, causan su daño.</li>
+            </ul>
+            <p><span class="highlight">Prioridad de objetivo:</span> jugador más cercano en número de losetas; si empate, el de menos vida; si persiste, al azar.</p>
+        </section>
+
+        <!-- Recompensas -->
+        <section id="recompensas">
+            <h2>🏆 Recompensas</h2>
+            <p>Al derrotar a un enemigo, el jugador recibe la recompensa indicada. Si lo derrota con un objeto, la recompensa es para quien usó el objeto.</p>
+        </section>
+
+        <!-- Fin de partida -->
+        <section id="fin">
+            <h2>✅ Fin de la partida</h2>
+            <p>La partida termina cuando solo queda <span class="highlight">un jugador con vida</span>. Ese jugador gana.</p>
+        </section>
+
+        <!-- Tabla rápida -->
+        <section id="tabla-rapida">
+            <h2>📋 Tabla rápida de turno</h2>
+            <table>
+                <tr><th>Acción</th><th>Coste</th><th>Límite</th></tr>
+                <tr><td>Mover 1 loseta normal</td><td>1 acción</td><td>Ilimitado</td></tr>
+                <tr><td>Entrar en terreno difícil</td><td>1 acción</td><td>Ilimitado</td></tr>
+                <tr><td>Salir de terreno difícil</td><td>2 acciones</td><td>Ilimitado</td></tr>
+                <tr><td>Revelar loseta adyacente</td><td>1 acción</td><td>Ilimitado</td></tr>
+                <tr><td>Atacar</td><td>1 acción</td><td>Ilimitado</td></tr>
+                <tr><td>Usar habilidad especial</td><td>1 acción</td><td>1 por turno</td></tr>
+                <tr><td>Usar objeto</td><td>1 acción</td><td>1 por turno</td></tr>
+                <tr><td>Descansar</td><td>Todas</td><td>1 por turno</td></tr>
+            </table>
+        </section>
+
+        <!-- Notas de prueba -->
+        <section id="pruebas">
+            <h2>🧪 Pruebas sugeridas</h2>
+            <ul>
+                <li>¿El ritmo es divertido o muy lento?</li>
+                <li>¿Algún personaje domina demasiado?</li>
+                <li>¿Los enemigos añaden tensión sin ser molestos?</li>
+                <li>¿Los objetos son útiles pero no rotos?</li>
+                <li>¿El terreno difícil genera decisiones tácticas?</li>
+                <li>¿El descanso alarga demasiado la partida?</li>
+                <li>¿Las losetas ocultas crean sorpresa e incertidumbre?</li>
+            </ul>
+        </section>
+
+        <footer style="text-align: center; margin: 2rem 0; color: #7a6a4f; font-size: 0.9rem;">
+            Mazmorra Hexagonal · Reglamento v0.9 · Creado para pruebas de juego
+        </footer>
+    </div>
+</body>
+</html>
